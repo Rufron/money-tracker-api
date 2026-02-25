@@ -1,0 +1,43 @@
+services:
+  - type: web
+    name: money-tracker-api
+    runtime: docker
+    repo: https://github.com/Rufron/money-tracker-api # Replace with your repo
+    branch: main
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_KEY
+        generateValue: true
+      - key: APP_NAME
+        value: "Money Tracker API"
+      - key: APP_URL
+        value: https://your-app-name.onrender.com  # Replace with your Render URL
+      
+      # Database configuration - Using SQLite for free tier
+      - key: DB_CONNECTION
+        value: sqlite
+      - key: DB_DATABASE
+        value: /var/www/html/database/database.sqlite
+      
+      # Logging
+      - key: LOG_CHANNEL
+        value: stack
+      - key: LOG_LEVEL
+        value: warning
+      
+      # Session
+      - key: SESSION_DRIVER
+        value: database
+      - key: SESSION_LIFETIME
+        value: 120
+      
+      # Cache
+      - key: CACHE_STORE
+        value: database
+      - key: QUEUE_CONNECTION
+        value: database
