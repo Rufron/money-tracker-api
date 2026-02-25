@@ -3,7 +3,8 @@
 return [
     'paths' => ['api/*', 'sanctum/csrf-cookie'],
     'allowed_methods' => ['*'],
-    'allowed_origins' => ['*'], // In production to specify my frontend URL
+    'allowed_origins' => ['*',
+    'https://simple-money-front.vercel.app/'], // In production to specify my frontend URL
     'allowed_origins_patterns' => [],
     'allowed_headers' => ['*'],
     'exposed_headers' => [],
