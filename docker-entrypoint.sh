@@ -3,6 +3,14 @@
 # Exit on error
 set -e
 
+# Fix permissions on every start (critical for Render)
+echo "🔧 Setting correct permissions..."
+chmod 777 /var/www/html/database
+chmod 666 /var/www/html/database/database.sqlite
+chown -R www-data:www-data /var/www/html/database 2>/dev/null || true
+chown -R www-data:www-data /var/www/html/storage 2>/dev/null || true
+chown -R www-data:www-data /var/www/html/bootstrap/cache 2>/dev/null || true
+
 # Generate APP_KEY if not set
 if [ -z "$APP_KEY" ]; then
     echo "Generating APP_KEY..."
